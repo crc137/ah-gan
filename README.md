@@ -22,6 +22,12 @@ Quickly toggle whether to ignore messages containing code snippets (PHP, Python,
 **Usage:**
 - `/codeignore` - Toggle the code ignoring setting on/off
 
+#### `/testcode` - Test Code Detection
+Test if a message would be detected as code and ignored by the bot.
+
+**Usage:**
+- Reply to any message with `/testcode` to check if it would be detected as code
+
 #### `/whitelist` - Manage Whitelisted Links
 Manage a list of domain patterns that are allowed even when links are generally blocked.
 
