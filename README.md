@@ -15,6 +15,13 @@ Controls general chat settings such as allowing/blocking Cyrillic text, links, a
 - `/settings links allow/block` - Allow or block links in messages
 - `/settings forwards allow/block` - Allow or block forwarded messages
 - `/settings code ignore/process` - Ignore or process messages containing code
+- `/settings adminnotify enable/disable` - Enable or disable detailed admin notifications
+
+#### `/adminnotify` - Toggle Admin Notifications
+Quickly toggle whether to send detailed notifications to admins about rule violations.
+
+**Usage:**
+- `/adminnotify` - Toggle the admin notification setting on/off
 
 #### `/codeignore` - Toggle Code Ignoring
 Quickly toggle whether to ignore messages containing code snippets (PHP, Python, JavaScript, etc.).
@@ -101,6 +108,8 @@ Check if a user ID is banned or ban a user ID.
 - Administrators are exempt from content filtering and warning systems
 - Only administrators can change chat settings and manage banned content
 - Administrators receive reports submitted by users
+- Administrators receive detailed notifications about rule violations with options to restore messages or remove warnings
+- Notifications include clickable user IDs, violation details, and message previews
 
 ## Notes
 - Each chat has its own independent settings for banned content, censure settings, and general settings
