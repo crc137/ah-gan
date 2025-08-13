@@ -2,20 +2,64 @@
 
 This document provides a comprehensive list of all commands available to administrators in the Telegram bot.
 
+## 🆕 New Features
+
+### Interactive Settings Panel
+The `/settings` command now provides an interactive panel with buttons for easy management of chat settings.
+
+**Features:**
+- **Button Interface:** Toggle settings with one click
+- **Real-time Updates:** Settings are saved immediately to database
+- **Visual Status:** Clear indicators showing current state (✅/❌)
+- **Refresh Option:** Update display without re-running command
+
+### Code Access Management
+New system for controlling code message permissions in specific topics.
+
+**Features:**
+- **Topic-based Access:** Allow code messages only in specific topics
+- **Flexible Control:** Enable/disable code access per topic
+- **Database Storage:** All settings saved persistently
+- **Admin-only Management:** Only administrators can configure
+
+### Enhanced Link Filtering
+Improved link filtering system with strict whitelist enforcement.
+
+**Features:**
+- **Whitelist-only Mode:** Only links from whitelist are allowed
+- **Automatic Blocking:** Non-whitelisted links are automatically blocked
+- **Detailed Reporting:** Shows which specific links were blocked
+- **Database Integration:** Whitelist stored in database
+
 ## Moderation Commands
 
 ### Message Moderation
 
 #### `/settings` - Manage Chat Settings
-Controls general chat settings such as allowing/blocking Cyrillic text, links, and forwarded messages.
+Controls general chat settings with an interactive button interface for easy management.
 
-**Usage:**
-- `/settings` - Display current settings
+**Interactive Panel:**
+- `/settings` - Display interactive settings panel with buttons
+- **Cyrillic:** Toggle Cyrillic text allowance
+- **Links:** Toggle link filtering (whitelist-only mode)
+- **Forwards:** Toggle forwarded message allowance
+- **Code:** Toggle code message processing
+- **Admin Notify:** Toggle detailed admin notifications
+- **Whitelist:** Quick access to whitelist management
+- **Refresh:** Update settings display
+
+**Legacy Commands (still supported):**
 - `/settings cyrillic allow/block` - Allow or block Cyrillic text
 - `/settings links allow/block` - Allow or block links in messages
 - `/settings forwards allow/block` - Allow or block forwarded messages
 - `/settings code ignore/process` - Ignore or process messages containing code
 - `/settings adminnotify enable/disable` - Enable or disable detailed admin notifications
+
+**Features:**
+- **One-click Toggle:** Change settings instantly with buttons
+- **Visual Feedback:** Clear status indicators (✅/❌)
+- **Real-time Save:** Settings saved to database immediately
+- **Admin-only Access:** Only administrators can modify settings
 
 #### `/adminnotify` - Toggle Admin Notifications
 Quickly toggle whether to send detailed notifications to admins about rule violations.
@@ -34,6 +78,21 @@ Test if a message would be detected as code and ignored by the bot.
 
 **Usage:**
 - Reply to any message with `/testcode` to check if it would be detected as code
+
+#### `/codeaccess` - Manage Code Access Permissions
+Control which topics allow code messages and manage code access settings.
+
+**Usage:**
+- `/codeaccess` - Display current code access settings
+- `/codeaccess enable <topic_id>` - Enable code access for specific topic
+- `/codeaccess disable` - Disable code access for all topics
+- `/codeaccess topic <topic_id>` - Set topic ID for code access without enabling
+
+**Features:**
+- **Topic-specific Access:** Code messages allowed only in specified topics
+- **Flexible Control:** Enable/disable access independently of topic setting
+- **Database Storage:** Settings saved persistently
+- **Admin-only:** Only administrators can manage code access
 
 #### `/whitelist` - Manage Whitelisted Links
 Manage a list of domain patterns that are allowed even when links are generally blocked.
@@ -101,8 +160,14 @@ Check if a user ID is banned or ban a user ID.
 - Messages containing banned words or emojis are automatically deleted
 - Messages in languages other than those allowed (Russian and English by default) are deleted
 - Messages containing obscene language are deleted based on the censure settings
-- Messages containing code snippets (PHP, Python, JavaScript, etc.) can be ignored based on settings
-- Links are blocked unless they match patterns in the whitelist
+- **Code Messages:** 
+  - Can be ignored globally based on settings
+  - Can be allowed only in specific topics when code access is enabled
+  - Blocked in all other topics when topic-specific access is configured
+- **Link Filtering:**
+  - **Whitelist-only Mode:** Only links from whitelist are allowed
+  - **Automatic Blocking:** Non-whitelisted links are automatically blocked
+  - **Detailed Reporting:** Shows which specific links were blocked
 
 ### Admin Privileges
 - Administrators are exempt from content filtering and warning systems
@@ -111,7 +176,23 @@ Check if a user ID is banned or ban a user ID.
 - Administrators receive detailed notifications about rule violations with options to restore messages or remove warnings
 - Notifications include clickable user IDs, violation details, and message previews
 
+## Database Integration
+
+### Settings Persistence
+- **MySQL Database:** All settings stored in MySQL database
+- **Chat-specific Settings:** Each chat has independent settings
+- **Automatic Save:** Settings saved immediately when changed
+- **Persistent Storage:** Settings maintained between bot restarts
+
+### New Database Fields
+- **`allow_code_access`:** Controls code message permissions
+- **`topic_id`:** Stores topic ID for code access control
+- **Enhanced Settings:** All existing settings with improved storage
+
 ## Notes
 - Each chat has its own independent settings for banned content, censure settings, and general settings
 - Settings are persistent and will be maintained even if the bot is restarted
-- Some features may require the bot to have appropriate permissions in the chat (delete messages, ban users, etc.) 
+- Some features may require the bot to have appropriate permissions in the chat (delete messages, ban users, etc.)
+- **New:** Interactive settings panel provides easier management than command-line options
+- **New:** Code access can be restricted to specific topics for better organization
+- **New:** Link filtering now uses strict whitelist-only mode by default 
