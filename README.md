@@ -36,17 +36,23 @@ Improved link filtering system with strict whitelist enforcement.
 ### Message Moderation
 
 #### `/settings` - Manage Chat Settings
-Controls general chat settings with an interactive button interface for easy management.
+Control various chat settings with interactive buttons.
 
-**Interactive Panel:**
-- `/settings` - Display interactive settings panel with buttons
-- **Cyrillic:** Toggle Cyrillic text allowance
-- **Links:** Toggle link filtering (whitelist-only mode)
-- **Forwards:** Toggle forwarded message allowance
-- **Code:** Toggle code message processing
-- **Admin Notify:** Toggle detailed admin notifications
-- **Whitelist:** Quick access to whitelist management
-- **Refresh:** Update settings display
+**Usage:**
+- `/settings` - Open settings menu with toggle buttons
+
+**Features:**
+- ✅ **One-click toggles** - Click any setting to turn it on/off
+- ✅ **Visual status** - See current state of all settings
+- ✅ **Whitelist integration** - Access whitelist management from settings
+- ✅ **Real-time updates** - Changes apply immediately
+
+**Available Settings:**
+- **Cyrillic Text** - Allow/block Cyrillic characters
+- **Links** - Allow/block links (whitelist mode)
+- **Forwards** - Allow/block forwarded messages
+- **Ignore Code** - Ignore/process code messages
+- **Admin Notifications** - Enable/disable admin alerts
 
 **Legacy Commands (still supported):**
 - `/settings cyrillic allow/block` - Allow or block Cyrillic text
@@ -54,12 +60,6 @@ Controls general chat settings with an interactive button interface for easy man
 - `/settings forwards allow/block` - Allow or block forwarded messages
 - `/settings code ignore/process` - Ignore or process messages containing code
 - `/settings adminnotify enable/disable` - Enable or disable detailed admin notifications
-
-**Features:**
-- **One-click Toggle:** Change settings instantly with buttons
-- **Visual Feedback:** Clear status indicators (✅/❌)
-- **Real-time Save:** Settings saved to database immediately
-- **Admin-only Access:** Only administrators can modify settings
 
 #### `/adminnotify` - Toggle Admin Notifications
 Quickly toggle whether to send detailed notifications to admins about rule violations.
@@ -94,14 +94,23 @@ Control which topics allow code messages and manage code access settings.
 - **Database Storage:** Settings saved persistently
 - **Admin-only:** Only administrators can manage code access
 
-#### `/whitelist` - Manage Whitelisted Links
-Manage a list of domain patterns that are allowed even when links are generally blocked.
+#### `/whitelist` - Manage Whitelisted Domains
+Control which domains are allowed when links are blocked.
 
 **Usage:**
-- `/whitelist` - Display current whitelisted domains
-- `/whitelist add example\.com` - Add a domain pattern to the whitelist
-- `/whitelist remove example\.com` - Remove a domain pattern from the whitelist
-- `/whitelist clear` - Clear all whitelisted domains
+- `/whitelist` - Open whitelist management interface
+
+**Features:**
+- ✅ **Add common domains** - One-click addition of popular sites
+- ✅ **Visual list** - See all whitelisted patterns
+- ✅ **Quick actions** - Clear all or add custom domains
+- ✅ **Integration** - Access from settings menu
+
+**Quick Actions:**
+- **➕ Add Common Domain** - Add popular sites (Google, YouTube, GitHub, etc.)
+- **🗑️ Clear All** - Remove all whitelisted patterns
+- **📝 Add Custom** - Instructions for custom domain addition
+- **🔄 Refresh** - Update the display
 
 #### `/warnings` - Manage User Warnings
 View and manage warnings that have been issued to users.
@@ -123,15 +132,25 @@ Controls the obscenity filter settings for the chat.
 - `/censure_settings language ru/en/both` - Set which languages to filter (Russian, English, or both)
 
 #### `/banned_content` - Manage Banned Words and Emojis
-Controls the list of banned words and emojis in the chat.
+Control the list of banned words and emojis with interactive buttons.
 
 **Usage:**
-- `/banned_content` - Display current banned content
-- `/banned_content add word1, word2, ...` - Add words to the banned list
-- `/banned_content add_emoji 😀, 😂, ...` - Add emojis to the banned list
-- `/banned_content remove word1, word2, ...` - Remove words from the banned list
-- `/banned_content remove_emoji 😀, 😂, ...` - Remove emojis from the banned list
-- `/banned_content clear` - Clear all banned content
+- `/banned_content` - Open banned content management interface
+
+**Features:**
+- ✅ **Add common content** - One-click addition of popular banned words/emojis
+- ✅ **Visual list** - See all banned content with counts
+- ✅ **Quick actions** - Clear all words, emojis, or everything
+- ✅ **Smart display** - Shows first 10 items with "and X more" for large lists
+
+**Quick Actions:**
+- **➕ Add Common Words** - Add popular banned words (spam, scam, fake, etc.)
+- **➕ Add Common Emojis** - Add popular banned emojis (💩, 🖕, 🤬, etc.)
+- **🗑️ Clear All Words** - Remove all banned words
+- **🗑️ Clear All Emojis** - Remove all banned emojis
+- **🗑️ Clear Everything** - Remove all banned content
+- **📝 Add Custom** - Instructions for custom content addition
+- **🔄 Refresh** - Update the display
 
 ### Reporting System
 
@@ -151,25 +170,23 @@ Check if a user ID is banned or ban a user ID.
 
 ### Code Access Management
 
-Manage code message permissions for different topics.
+Simple code access control with automatic topic detection.
 
 **Usage:**
-- `/codeaccess` - Show current code access settings
-- `/codeaccess enable` - Enable code access globally
-- `/codeaccess disable` - Disable code access globally
-- `/codeaccess add <topic_id>` - Add topic to access list (disabled by default)
-- `/codeaccess remove <topic_id>` - Remove topic from access list
-- `/codeaccess enable_topic <topic_id>` - Enable specific topic for code access
-- `/codeaccess disable_topic <topic_id>` - Disable specific topic for code access
-- `/codeaccess list` - Show all configured topics with their status
+- `/codeaccess` - Show enable/disable buttons
 
-**Example:**
-```
-/codeaccess add 123456789
-/codeaccess enable_topic 123456789
-/codeaccess add 987654321
-/codeaccess list
-```
+**How it works:**
+1. Type `/codeaccess` in any topic
+2. Bot shows current status and two buttons
+3. Click "✅ Enable Code Access" to allow code in current topic
+4. Click "❌ Disable Code Access" to block all code everywhere
+
+**Features:**
+- ✅ **Automatic topic detection** - Bot automatically detects current topic ID
+- ✅ **One-click setup** - Enable button automatically adds current topic to allowed list
+- ✅ **Simple interface** - Just two buttons: Enable or Disable
+- ✅ **Smart monitoring** - When enabled, blocks code in all topics except allowed ones
+- ✅ **No manual ID input** - No need to know or type topic IDs
 
 ## System Behavior
 
