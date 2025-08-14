@@ -149,6 +149,28 @@ Check if a user ID is banned or ban a user ID.
 **Usage:**
 - `/banid [user_id]` - Check if a user ID is banned
 
+### Code Access Management
+
+Manage code message permissions for different topics.
+
+**Usage:**
+- `/codeaccess` - Show current code access settings
+- `/codeaccess enable` - Enable code access globally
+- `/codeaccess disable` - Disable code access globally
+- `/codeaccess add <topic_id>` - Add topic to access list (disabled by default)
+- `/codeaccess remove <topic_id>` - Remove topic from access list
+- `/codeaccess enable_topic <topic_id>` - Enable specific topic for code access
+- `/codeaccess disable_topic <topic_id>` - Disable specific topic for code access
+- `/codeaccess list` - Show all configured topics with their status
+
+**Example:**
+```
+/codeaccess add 123456789
+/codeaccess enable_topic 123456789
+/codeaccess add 987654321
+/codeaccess list
+```
+
 ## System Behavior
 
 ### Warning System
@@ -163,6 +185,8 @@ Check if a user ID is banned or ban a user ID.
 - **Code Messages:** 
   - Can be ignored globally based on settings
   - Can be allowed only in specific topics when code access is enabled
+  - Support for multiple topics with individual access control
+  - Each topic can be enabled/disabled independently
   - Blocked in all other topics when topic-specific access is configured
 - **Link Filtering:**
   - **Whitelist-only Mode:** Only links from whitelist are allowed
@@ -186,7 +210,7 @@ Check if a user ID is banned or ban a user ID.
 
 ### New Database Fields
 - **`allow_code_access`:** Controls code message permissions
-- **`topic_id`:** Stores topic ID for code access control
+- **`topic_access_list`:** Stores list of topics with access permissions (JSON array of objects with topic_id and enabled status)
 - **Enhanced Settings:** All existing settings with improved storage
 
 ## Notes
