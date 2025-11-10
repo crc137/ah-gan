@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/coonlink">
-    <img width="390px" src="https://raw.coonlink.com/cloud/logo-gana-x-coonlink.svg?1" alt="Ah Gan Logo" />
+    <img width="290px" src="https://raw.coonlink.com/cloud/logo-gana-x-coonlink.svg?1" alt="Ah Gan Logo" />
   </a>
 </div>
 
